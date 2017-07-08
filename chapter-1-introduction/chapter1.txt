@@ -1,0 +1,9 @@
+volatility is the fluctuation of an asset price. we can estimate
+volatility from the fluctuations of prices. Volatility is important
+because it is used to evaluate options. In the classical Black Scholes 
+model the same parameter that describes historical volatility determines
+ option prices. Thus we can estimate volatility in two ways: from historical prices and
+from option prices. Evidence shows that [hull] that
+historical volaitility and implied volatility are different, based on 
+an analysis using Black-Scholes and constant volatility. Thus, there is
+a need to study volatility as non-constant over time. Empirical evidence shows that 

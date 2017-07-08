@@ -1,0 +1,20 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: advancement-Georgi-Dinolov.aux
+A level-1 auxiliary file: ./chapter-1-introduction/chapter-1-introduction.aux
+A level-1 auxiliary file: ./chapter-2-univariate-case/chapter-2-univariate-case.aux
+A level-1 auxiliary file: ./chapter-3-two-dimensional-case/chapter-3-two-dimensional-case.aux
+A level-1 auxiliary file: ./chapter-4-future-work/chapter-4-future-work.aux
+The style file: plainnat.bst
+Database file #1: advancement-bibliography.bib
+Repeated entry---line 243 of file advancement-bibliography.bib
+ : @article{hull1987pricing
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 301 of file advancement-bibliography.bib
+ : @article{barndorff2002econometric
+ :                                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 567 of file advancement-bibliography.bib
+ : @article{kim1998stochastic
+ :                           ,
+I'm skipping whatever remains of this entry
+(There were 3 error messages)

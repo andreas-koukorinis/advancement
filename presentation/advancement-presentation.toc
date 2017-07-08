@@ -1,0 +1,5 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Models for Time-Dependent Volatility}{7}{0}{1}
+\beamer@sectionintoc {2}{Univariate Model}{11}{0}{2}
+\beamer@sectionintoc {3}{Bivariate Model}{29}{0}{3}
+\beamer@sectionintoc {4}{Future Work}{40}{0}{4}

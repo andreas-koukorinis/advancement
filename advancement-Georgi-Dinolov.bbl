@@ -1,0 +1,327 @@
+\begin{thebibliography}{51}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alizadeh et~al.(2002)Alizadeh, Brandt, and Diebold]{alizadeh2002range}
+Sassan Alizadeh, Michael~W Brandt, and Francis~X Diebold.
+\newblock Range-based estimation of stochastic volatility models.
+\newblock \emph{The Journal of Finance}, 57\penalty0 (3):\penalty0 1047--1091,
+  2002.
+
+\bibitem[Andersen and
+  Bollerslev(1997{\natexlab{a}})]{andersen1997heterogeneous}
+Torben~G Andersen and Tim Bollerslev.
+\newblock Heterogeneous information arrivals and return volatility dynamics:
+  Uncovering the long-run in high frequency returns.
+\newblock \emph{The journal of Finance}, 52\penalty0 (3):\penalty0 975--1005,
+  1997{\natexlab{a}}.
+
+\bibitem[Andersen and Bollerslev(1997{\natexlab{b}})]{andersen1997intraday}
+Torben~G Andersen and Tim Bollerslev.
+\newblock Intraday periodicity and volatility persistence in financial markets.
+\newblock \emph{Journal of empirical finance}, 4\penalty0 (2):\penalty0
+  115--158, 1997{\natexlab{b}}.
+
+\bibitem[Andersen and Bollerslev(1998)]{andersen1998answering}
+Torben~G Andersen and Tim Bollerslev.
+\newblock Answering the skeptics: Yes, standard volatility models do provide
+  accurate forecasts.
+\newblock \emph{International economic review}, pages 885--905, 1998.
+
+\bibitem[Andersen et~al.(2001)Andersen, Bollerslev, Diebold, and
+  Labys]{andersen2001distribution}
+Torben~G Andersen, Tim Bollerslev, Francis~X Diebold, and Paul Labys.
+\newblock The distribution of realized exchange rate volatility.
+\newblock \emph{Journal of the American statistical association}, 96\penalty0
+  (453):\penalty0 42--55, 2001.
+
+\bibitem[Baillie and Myers(1991)]{baillie1991bivariate}
+Richard~T Baillie and Robert~J Myers.
+\newblock Bivariate garch estimation of the optimal commodity futures hedge.
+\newblock \emph{Journal of Applied Econometrics}, 6\penalty0 (2):\penalty0
+  109--124, 1991.
+
+\bibitem[Barndorff-Nielsen(2002)]{barndorff2002econometric}
+Ole~E Barndorff-Nielsen.
+\newblock Econometric analysis of realized volatility and its use in estimating
+  stochastic volatility models.
+\newblock \emph{Journal of the Royal Statistical Society: Series B (Statistical
+  Methodology)}, 64\penalty0 (2):\penalty0 253--280, 2002.
+
+\bibitem[Barndorff-Nielsen and Shephard(2002)]{barndorff2002estimating}
+Ole~E Barndorff-Nielsen and Neil Shephard.
+\newblock Estimating quadratic variation using realized variance.
+\newblock \emph{Journal of Applied Econometrics}, 17\penalty0 (5):\penalty0
+  457--477, 2002.
+
+\bibitem[Barndorff-Nielsen and Shephard(2004)]{barndorff2004power}
+Ole~E Barndorff-Nielsen and Neil Shephard.
+\newblock Power and bipower variation with stochastic volatility and jumps.
+\newblock \emph{Journal of financial econometrics}, 2\penalty0 (1):\penalty0
+  1--37, 2004.
+
+\bibitem[Bates(1996)]{bates1996jumps}
+David~S Bates.
+\newblock Jumps and stochastic volatility: Exchange rate processes implicit in
+  deutsche mark options.
+\newblock \emph{Review of financial studies}, 9\penalty0 (1):\penalty0 69--107,
+  1996.
+
+\bibitem[Bauwens and Lubrano(1998)]{bauwens1998bayesian}
+Luc Bauwens and Michel Lubrano.
+\newblock Bayesian inference on garch models using the gibbs sampler.
+\newblock \emph{The Econometrics Journal}, 1\penalty0 (1):\penalty0 23--46,
+  1998.
+
+\bibitem[Bollerslev(1986)]{bollerslev1986}
+Tim Bollerslev.
+\newblock Generalized autoregressive conditional heteroskedasticity.
+\newblock \emph{Journal of econometrics}, 31\penalty0 (3):\penalty0 307--327,
+  1986.
+
+\bibitem[Bollerslev(1990)]{bollerslev1990modelling}
+Tim Bollerslev.
+\newblock Modelling the coherence in short-run nominal exchange rates: a
+  multivariate generalized arch model.
+\newblock \emph{The Review of Economics and Statistics}, pages 498--505, 1990.
+
+\bibitem[Bollerslev and Zhang(2003)]{bollerslev2003measuring}
+Tim Bollerslev and Benjamin~YB Zhang.
+\newblock Measuring and modeling systematic risk in factor pricing models using
+  high-frequency data.
+\newblock \emph{Journal of Empirical Finance}, 10\penalty0 (5):\penalty0
+  533--558, 2003.
+
+\bibitem[Bollerslev and Zhou(2002)]{bollerslev2002estimating}
+Tim Bollerslev and Hao Zhou.
+\newblock Estimating stochastic volatility diffusion using conditional moments
+  of integrated volatility.
+\newblock \emph{Journal of Econometrics}, 109\penalty0 (1):\penalty0 33--65,
+  2002.
+
+\bibitem[Breidt et~al.(1998)Breidt, Crato, and
+  De~Lima]{breidt1998detection-estimation}
+F~Jay Breidt, Nuno Crato, and Pedro De~Lima.
+\newblock The detection and estimation of long memory in stochastic volatility.
+\newblock \emph{Journal of econometrics}, 83\penalty0 (1):\penalty0 325--348,
+  1998.
+
+\bibitem[Brogaard(2010)]{brogaard2010high}
+Jonathan Brogaard.
+\newblock High frequency trading and its impact on market quality.
+\newblock \emph{Northwestern University Kellogg School of Management Working
+  Paper}, page~66, 2010.
+
+\bibitem[Carr and Wu(2004)]{carr2004time}
+Peter Carr and Liuren Wu.
+\newblock Time-changed l{\'e}vy processes and option pricing.
+\newblock \emph{Journal of Financial Economics}, 71\penalty0 (1):\penalty0
+  113--141, 2004.
+
+\bibitem[Clark(1973)]{clark1973subordinated}
+Peter~K Clark.
+\newblock A subordinated stochastic process model with finite variance for
+  speculative prices.
+\newblock \emph{Econometrica: journal of the Econometric Society}, pages
+  135--155, 1973.
+
+\bibitem[Comte and Renault(1998)]{comte1998long}
+Fabienne Comte and Eric Renault.
+\newblock Long memory in continuous-time stochastic volatility models.
+\newblock \emph{Mathematical Finance}, 8\penalty0 (4):\penalty0 291--323, 1998.
+
+\bibitem[Comte et~al.(2012)Comte, Coutin, and Renault]{comte2012affine}
+Fabienne Comte, Laure Coutin, and {\'E}ric Renault.
+\newblock Affine fractional stochastic volatility models.
+\newblock \emph{Annals of Finance}, 8\penalty0 (2-3):\penalty0 337--378, 2012.
+
+\bibitem[Engle(1982)]{engle1982}
+Robert~F Engle.
+\newblock Autoregressive conditional heteroscedasticity with estimates of the
+  variance of united kingdom inflation.
+\newblock \emph{Econometrica: Journal of the Econometric Society}, pages
+  987--1007, 1982.
+
+\bibitem[Fama(1965)]{fama1965behavior}
+Eugene~F Fama.
+\newblock The behavior of stock-market prices.
+\newblock \emph{Journal of business}, pages 34--105, 1965.
+
+\bibitem[Freedman(1971)]{freedman1971brownian}
+David Freedman.
+\newblock \emph{Brownian motion and diffusion}.
+\newblock Springer, 1971.
+
+\bibitem[Geman(2005)]{geman2005measure}
+H{\'e}lyette Geman.
+\newblock From measure changes to time changes in asset pricing.
+\newblock \emph{Journal of Banking \& Finance}, 29\penalty0 (11):\penalty0
+  2701--2722, 2005.
+
+\bibitem[Hansen and Lunde(2006)]{hansen2006realized}
+Peter~R Hansen and Asger Lunde.
+\newblock Realized variance and market microstructure noise.
+\newblock \emph{Journal of Business \& Economic Statistics}, 24\penalty0
+  (2):\penalty0 127--161, 2006.
+
+\bibitem[Harvey(2002)]{harvey2002long}
+Andrew~C Harvey.
+\newblock Long memory in stochastic volatility.
+\newblock \emph{Forecasting volatility in the financial markets}, page 307,
+  2002.
+
+\bibitem[Horst et~al.(2012)Horst, Rodriguez, Gzyl, and Molina]{rodriguez2012}
+Enrique~Ter Horst, Abel Rodriguez, Henryk Gzyl, and German Molina.
+\newblock Stochastic volatility models including open, close, high and low
+  prices.
+\newblock \emph{Quantitative Finance}, 12\penalty0 (2):\penalty0 199--212,
+  2012.
+
+\bibitem[Hull and White(1987)]{hull1987pricing}
+John Hull and Alan White.
+\newblock The pricing of options on assets with stochastic volatilities.
+\newblock \emph{The journal of finance}, 42\penalty0 (2):\penalty0 281--300,
+  1987.
+
+\bibitem[Jacquier et~al.(2002)Jacquier, Polson, and
+  Rossi]{jacquier2002bayesian}
+Eric Jacquier, Nicholas~G Polson, and Peter~E Rossi.
+\newblock Bayesian analysis of stochastic volatility models.
+\newblock \emph{Journal of Business \& Economic Statistics}, 20\penalty0
+  (1):\penalty0 69--87, 2002.
+
+\bibitem[Kim et~al.(1998)Kim, Shephard, and Chib]{kim1998stochastic}
+Sangjoon Kim, Neil Shephard, and Siddhartha Chib.
+\newblock Stochastic volatility: likelihood inference and comparison with arch
+  models.
+\newblock \emph{The Review of Economic Studies}, 65\penalty0 (3):\penalty0
+  361--393, 1998.
+
+\bibitem[Lildholdt(2002)]{lildholdt2002estimation}
+Peter Lildholdt.
+\newblock \emph{Estimation of GARCH models based on open, close, high, and low
+  prices}.
+\newblock CAF, Centre for Analytical Finance, 2002.
+
+\bibitem[Mandelbrot(1967)]{mandelbrot1967variation}
+Benoit Mandelbrot.
+\newblock The variation of some other speculative prices.
+\newblock \emph{Journal of Business}, pages 393--413, 1967.
+
+\bibitem[Melino and Turnbull(1990)]{melino1990pricing}
+Angelo Melino and Stuart~M Turnbull.
+\newblock Pricing foreign currency options with stochastic volatility.
+\newblock \emph{Journal of Econometrics}, 45\penalty0 (1):\penalty0 239--265,
+  1990.
+
+\bibitem[Nakatsuma(2000)]{nakatsuma2000bayesian}
+Teruo Nakatsuma.
+\newblock Bayesian analysis of arma--garch models: A markov chain sampling
+  approach.
+\newblock \emph{Journal of Econometrics}, 95\penalty0 (1):\penalty0 57--69,
+  2000.
+
+\bibitem[Nelson(1991)]{nelson1991conditional}
+Daniel~B Nelson.
+\newblock Conditional heteroskedasticity in asset returns: A new approach.
+\newblock \emph{Econometrica: Journal of the Econometric Society}, pages
+  347--370, 1991.
+
+\bibitem[Omori et~al.(2007)Omori, Chib, Shephard, and
+  Nakajima]{omori2007stochastic}
+Yasuhiro Omori, Siddhartha Chib, Neil Shephard, and Jouchi Nakajima.
+\newblock Stochastic volatility with leverage: Fast and efficient likelihood
+  inference.
+\newblock \emph{Journal of Econometrics}, 140\penalty0 (2):\penalty0 425--449,
+  2007.
+
+\bibitem[Quintana and West(1987)]{quintana1987multivariate}
+Jos{\'e}~M Quintana and Mike West.
+\newblock An analysis of international exchange rates using multivariate dlm's.
+\newblock \emph{The Statistician}, pages 275--281, 1987.
+
+\bibitem[Ruiz(1994)]{ruiz1994quasi}
+Esther Ruiz.
+\newblock Quasi-maximum likelihood estimation of stochastic volatility models.
+\newblock \emph{Journal of econometrics}, 63\penalty0 (1):\penalty0 289--306,
+  1994.
+
+\bibitem[Sandmann and Koopman(1998)]{sandmann1998estimation}
+Gleb Sandmann and Siem~Jan Koopman.
+\newblock Estimation of stochastic volatility models via monte carlo maximum
+  likelihood.
+\newblock \emph{Journal of Econometrics}, 87\penalty0 (2):\penalty0 271--301,
+  1998.
+
+\bibitem[Shephard(2005)]{shephard2005selected-readings}
+Neil Shephard.
+\newblock \emph{Stochastic Volatility: Selected Readings}.
+\newblock Oxford University Press, UK, 2005.
+
+\bibitem[Shirota et~al.(2014)Shirota, Hizu, and Omori]{shirota2014realized}
+Shinichiro Shirota, Takayuki Hizu, and Yasuhiro Omori.
+\newblock Realized stochastic volatility with leverage and long memory.
+\newblock \emph{Computational Statistics \& Data Analysis}, 76:\penalty0
+  618--641, 2014.
+
+\bibitem[Stoll(2000)]{stoll2000presidential}
+Hans~R Stoll.
+\newblock Presidential address: friction.
+\newblock \emph{The Journal of Finance}, 55\penalty0 (4):\penalty0 1479--1514,
+  2000.
+
+\bibitem[Todorov(2011)]{todorov2011econometric}
+Viktor Todorov.
+\newblock Econometric analysis of jump-driven stochastic volatility models.
+\newblock \emph{Journal of Econometrics}, 160\penalty0 (1):\penalty0 12--21,
+  2011.
+
+\bibitem[Uhlig(1997)]{uhlig1997bayesian}
+Harald Uhlig.
+\newblock Bayesian vector autoregressions with stochastic volatility.
+\newblock \emph{Econometrica: Journal of the Econometric Society}, pages
+  59--73, 1997.
+
+\bibitem[Venter and de~Jongh(2012)]{venter2012extended}
+JH~Venter and PJ~de~Jongh.
+\newblock Extended stochastic volatility models incorporating realised
+  measures.
+\newblock \emph{Computational Statistics \& Data Analysis}, 2012.
+
+\bibitem[Vrontos et~al.(2000)Vrontos, Dellaportas, and
+  Politis]{vrontos2000full}
+Ioannis~D Vrontos, Petros Dellaportas, and Dimitris~N Politis.
+\newblock Full bayesian inference for garch and egarch models.
+\newblock \emph{Journal of Business \& Economic Statistics}, 18\penalty0
+  (2):\penalty0 187--198, 2000.
+
+\bibitem[Wilcox(1967)]{wilcox1967exponential}
+RM~Wilcox.
+\newblock Exponential operators and parameter differentiation in quantum
+  physics.
+\newblock \emph{Journal of Mathematical Physics}, 8\penalty0 (4):\penalty0
+  962--982, 1967.
+
+\bibitem[Yu(2005)]{yu2005leverage}
+Jun Yu.
+\newblock On leverage in a stochastic volatility model.
+\newblock \emph{Journal of Econometrics}, 127\penalty0 (2):\penalty0 165--178,
+  2005.
+
+\bibitem[Yu and Meyer(2006)]{yu2006multivariate}
+Jun Yu and Renate Meyer.
+\newblock Multivariate stochastic volatility models: Bayesian estimation and
+  model comparison.
+\newblock \emph{Econometric Reviews}, 25\penalty0 (2-3):\penalty0 361--384,
+  2006.
+
+\bibitem[Zhang et~al.(2005)Zhang, Mykland, and A{\"\i}t-Sahalia]{zhang2005tale}
+Lan Zhang, Per~A Mykland, and Yacine A{\"\i}t-Sahalia.
+\newblock A tale of two time scales.
+\newblock \emph{Journal of the American Statistical Association}, 100\penalty0
+  (472), 2005.
+
+\end{thebibliography}

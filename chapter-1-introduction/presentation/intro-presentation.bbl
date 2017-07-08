@@ -1,0 +1,30 @@
+\begin{thebibliography}{1}
+
+\bibitem{andersen1997heterogeneous}
+Torben~G Andersen and Tim Bollerslev.
+\newblock Heterogeneous information arrivals and return volatility dynamics:
+  Uncovering the long-run in high frequency returns.
+\newblock {\em The journal of Finance}, 52(3):975--1005, 1997.
+
+\bibitem{andersen1997intraday}
+Torben~G Andersen and Tim Bollerslev.
+\newblock Intraday periodicity and volatility persistence in financial markets.
+\newblock {\em Journal of empirical finance}, 4(2):115--158, 1997.
+
+\bibitem{barndorff2002quadratic-variation}
+Ole~E Barndorff-Nielsen and Neil Shephard.
+\newblock Estimating quadratic variation using realized variance.
+\newblock {\em Journal of Applied Econometrics}, 17(5):457--477, 2002.
+
+\bibitem{hansen2005comparison}
+Peter~R Hansen and Asger Lunde.
+\newblock A forecast comparison of volatility models: does anything beat a
+  garch (1, 1)?
+\newblock {\em Journal of applied econometrics}, 20(7):873--889, 2005.
+
+\bibitem{nelson1990arch-approximations}
+Daniel~B Nelson.
+\newblock Arch models as diffusion approximations.
+\newblock {\em Journal of econometrics}, 45(1):7--38, 1990.
+
+\end{thebibliography}

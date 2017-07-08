@@ -1,0 +1,68 @@
+\documentclass[11pt,a4paper,oneside]{report}
+
+\usepackage{pslatex,palatino,avant,graphicx,color}
+\usepackage[margin=2cm]{geometry}
+\usepackage{mathtools}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{csvsimple}
+\usepackage{bm}
+\usepackage{wrapfig}
+\usepackage[table]{xcolor}
+%authoryear
+
+\title{Estimation of Volatility Using Open, Close, High, and Low Prices: Application to Stochastic 
+Volatility Models and High-Frequency Data. }
+\author{Georgi Dinolov}
+\date{September, 2014}
+
+\newcommand{\placeTimeline}[2]{\begin{wrapfigure}{o}{0.2\textwidth}
+\vspace{#1}
+\hfill
+   \scalebox{0.9}{
+\footnotesize
+  \begin{tabular}{|l|l|l|l|l|l|l|}\hline
+    & Fall 2014 & Winter 2015 & Spring 2015 & Summer 2015 & Fall 2015 & Winter 2016 \\\hline
+    {\bf Stochastic Volatility with microstructure noise}: &\cellcolor{cyan} &&&&&\\\hline
+    {\bf Univariate Likelihood with microstructure noise}: &\multicolumn{2}{|c|}{\cellcolor{red}} &&&&\\\hline
+    {\bf Bivariate Likelihood with Bernstein polynomials}: &&\multicolumn{2}{|c|}{\cellcolor{green}} &&&\\\hline
+    {\bf Bivariate Stochastic Volatility model}: &&&\multicolumn{3}{|c|}{\cellcolor{yellow}} &\\\hline
+%    {\bf Robotic test bed}: & \multicolumn{6}{|c|}{\cellcolor{brown}}&&\\\hline
+    {\bf Thesis writing}: &&&&&\multicolumn{2}{|c|}{\cellcolor{magenta}} \\\hline
+\end{tabular}	
+}	
+\vspace{#2}
+\end{wrapfigure}}
+
+\setcounter{tocdepth}{1}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Early empirical work strongly suggests that the volatility of financial asset prices varies over time. Understanding time-dependent volatility is an extremely important problem in econometrics and finance, especially in terms of options pricing, portfolio management, and risk evaluation. To this end, many models have been developed to estimate time-varying  volatility processes from market price data. Most statistical models have used the opening and closing prices over considered sampling frequencies for estimation and forecasting. With the wider availability of higher frequency data, effort has been placed on developing models and algorithms that utilize more of this abundant information to improve inference. We focus on stochastic volatility models which, in addition to opening and closing prices, use minimum and maximum prices to summarize intraperiod data.  We derive the likelihood for open, close, high, and low (OCHL) prices for a single asset. We use this likelihood to obtain maximum likelihood estimates for volatility from simulated high-frequency data and compare their performance to other commonly used estimators for high-frequency data. Further, we derive the joint likelihood for two assets with OCHL data, which is expected to provide better estimates for correlation in addition to volatility. In this way, we lay the groundwork for the implementation of a bivariate stochastic volatility algorithm. Finally, we outline a method of incorporating market mictrostructure noise, a phenomenon endogenous to high-frequency data, in the univariate OCHL stochastic volatility setting.
+\end{abstract}
+
+\renewcommand{\abstractname}{Acknowledgements}
+\begin{abstract}
+I want to thank my advisors Professor Abel Rodriguez and Professor Hongyun Wang for helping me write my advancement. I also want to thank the rest of my advancement committee members, Professor Raquel Prado and Professor Daniel Friedman, for taking the time to read my work. 
+\end{abstract}
+
+\tableofcontents
+
+\include{./chapter-1-introduction/chapter-1-introduction}
+
+\include{./chapter-2-univariate-case/chapter-2-univariate-case}
+
+\include{./chapter-3-two-dimensional-case/chapter-3-two-dimensional-case}
+
+\include{./chapter-4-future-work/chapter-4-future-work}
+
+%\bibliographystyle{plainnat}
+\bibliographystyle{bka}
+\bibliography{advancement-bibliography}
+
+\end{document}

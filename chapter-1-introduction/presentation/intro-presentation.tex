@@ -1,0 +1,230 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/doc/beamercolorthemeexample.tex,v 1.11 2004/10/07 20:53:04 tantau Exp $
+\documentclass{beamer}
+
+\usepackage{beamerthemesplit}
+\usepackage{graphicx,amsmath,natbib} %,apalike,cite
+\usepackage{color}
+\usepackage{subfigure}
+\usepackage{bbm}
+\usepackage{mathtools}
+\usepackage{enumerate}
+%\usepackage{graphicx,times,amsmath}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usetheme{Frankfurt}
+\usecolortheme{seahorse}
+\usecolortheme{rose}
+
+\newcommand{\bfalpha} {\boldsymbol{\alpha}}
+\newcommand{\bfbeta} {\boldsymbol{\beta}}
+\newcommand{\bfgamma} {\boldsymbol{\gamma}}
+\newcommand{\bfdelta} {\boldsymbol{\delta}}
+\newcommand{\bfxi} {\boldsymbol{\xi}}
+\newcommand{\bfmu} {\boldsymbol{\mu}}
+\newcommand{\bfsigma} {\boldsymbol{\sigma}}
+\newcommand{\bfeta} {\boldsymbol{\eta}}
+\newcommand{\bfzeta} {\boldsymbol{\zeta}}
+\newcommand{\bfvarphi} {\boldsymbol{\varphi}}
+\newcommand{\bflambda} {\boldsymbol{\lambda}}
+\newcommand{\bfpsi} {\boldsymbol{\psi}}
+\newcommand{\bfphi} {\boldsymbol{\phi}}
+\newcommand{\bfvarpsi} {\boldsymbol{\varpsi}}
+\newcommand{\bfvarsigma} {\boldsymbol{\varsigma}}
+\newcommand{\bfnu} {\boldsymbol{\nu}}
+\newcommand{\bftheta} {\boldsymbol{\theta}}
+\newcommand{\bfomega} {\boldsymbol{\omega}}
+\newcommand{\bfTheta} {\boldsymbol{\Theta}}
+\newcommand{\bfSigma} {\boldsymbol{\Sigma}}
+\newcommand{\bfPsi} {\boldsymbol{\Psi}}
+\newcommand{\bfchi} {\boldsymbol{\chi}}
+\newcommand{\bfvartheta} {\boldsymbol{\vartheta}}
+
+\newcommand{\bfx} {\mathbf{x}}
+\newcommand{\bfy} {\mathbf{y}}
+\newcommand{\bfY} {\mathbf{Y}}
+
+
+\renewcommand{\Pr}{\mathsf{Pr}}
+\newcommand{\E}{\mathsf{E}}
+\newcommand{\V}{\mathsf{Var}}
+\newcommand{\Cov}{\mathsf{Cov}}
+\newcommand{\Cor}{\mathsf{Cor}}
+\newcommand{\reals}{\mathbb{R}}
+
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\trace}{tr}
+\newcommand{\normal}{\mathsf{N}}
+\newcommand{\DP}{\mathsf{DP}}
+\newcommand{\Ber}{\mathsf{Ber}}
+\newcommand{\Dir}{\mathsf{Dir}}
+\newcommand{\Gam}{\mathsf{G}}
+\newcommand{\IGam}{\mathsf{IG}}
+\newcommand{\bin}{\mathsf{Bin}}
+\newcommand{\geo}{\mathsf{Geo}}
+\newcommand{\Exp}{\mathsf{E}}
+\newcommand{\Wis}{\mathsf{W}}
+\newcommand{\IWis}{\mathsf{IW}}
+\newcommand{\Poi}{\mathsf{Poi}}
+\newcommand{\bet}{\mathsf{beta}}
+\newcommand{\Mul}{\mathsf{Mult}}
+\newcommand{\GDir}{\mathsf{GDir}}
+\newcommand{\nDP}{\mathsf{nDP}}
+\newcommand{\HDP}{\mathsf{HDP}}
+\newcommand{\NIG}{\mathsf{NIG}}
+\newcommand{\PDP}{\mathsf{PDP}}
+\newcommand{\CRP}{\mathsf{CRP}}
+\newcommand{\SB}{\mathsf{SB}}
+
+\newcommand{\expo}[1]{ e^{ #1} }
+
+
+\title{Various Methods for Estimating Volatility}
+%\author{Georgi Dinolov, Abel Rodriguez - UC, Santa Cruz}
+\date{5/4/2014}
+
+\begin{document}
+
+%\frame{\titlepage}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{The GARCH Process}
+	The GARCH(p,q) process is given by 
+	\begin{eqnarray*}
+		\epsilon_t &=& \sigma_t z_t \\
+		\sigma_t^2 &=& \alpha_0 + \sum_{i=1}^q \alpha_i \epsilon_{t-i}^2 + \sum_{i=1}^p \beta_i \sigma^2_{t-i},
+	\end{eqnarray*}
+	with $\epsilon_t$ being errors around a mean process, and $z_t$ is standard Brownian motion.
+
+	The most common set of parameters are $p=1$ and $q=1$. Hansen and Lunde \cite{hansen2005comparison} show that GARCH(1,1) does as well, or better, than more complicated models in forecasting volatility. As a result, it is useful to focus on the properties of GARCH(1,1) as the time-step in the finite difference stochastic difference equation approaches zero.
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Small-step asymptotics for GARCH(1,1)}
+	If one is to use (regularly spaced) high-frequency data, it is useful to develop theory for ARCH processes where the time-step in the stochastic difference equation approaches zero. Nelson \cite{nelson1990arch-approximations} develops such asymptotic relations. Most notably, with respect to estimation of parameters, we expect to observe
+	\begin{eqnarray*}
+		\alpha_h + \beta_h &\to& 1 \mbox{ as } h \to 0 \\
+		\alpha_h &\to& 0 \\
+		\beta_h &\to& 1 
+	\end{eqnarray*}
+
+	\pause 
+	
+	Empirical evidence for high-frequency data does not support this.
+
+	\pause
+
+	What could cause theoretical deviations?
+\end{frame}
+
+\begin{frame}
+	\frametitle{Reasons for GARCH failure at higher frequencies}
+	\begin{enumerate}
+		\item intraday volatility patterns 
+		\item short-term bursts in volatility associated with news releases
+		\item other microstructure noise
+	\end{enumerate}
+
+\pause
+
+	The most commonly used method to model an intraday volatility process is Andersen and Bollerslev's sequential estimation approach \cite{andersen1997heterogeneous}, \cite{andersen1997intraday}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Realized Volatility}
+	Assuming that logarithmic price of a financial asset is given by the diffusion process
+	\begin{equation}
+		p_t = \int_0^t \mu(s)ds + \int_0^t \sigma(s)dW(s),
+	\end{equation}
+	we are interested in the integrated volatility over a past time interval $\Delta$, 
+	\begin{equation}
+		IV_t = \int_{t-\Delta}^t \sigma^2(s)ds,
+	\end{equation}
+	
+	\pause
+	
+	which is approximated with 
+	
+	\begin{equation}
+		RV^{(m)} = \sum_{i=1}^m r_i^{(m)^2}.
+	\end{equation}
+
+	\pause
+
+		From \cite{barndorff2002quadratic-variation}, $\frac{\sqrt{m} (RV^{(m)} - IV)}{\sqrt{2 \int_0^1 \sigma^4(s)ds}} \to N(0,1)$
+\end{frame}
+
+\begin{frame}
+	\frametitle{Microstructure Noise}
+	The very high-frequency prices are contaminated by market microstructure effects (noise), which lead to biases in realized volatility. Realized volatility estimators are derived based on the assumptions for the microscruture noise:
+	\begin{equation}
+		r_i^{(m)} = r_i^{*(m)} + \epsilon_i^{(m)}, i = 1,2, \ldots, m,
+	\end{equation}
+	where $r^{*(m)}_i$ is the true log-difference of prices, $\epsilon_i^{(m)}$ is the contamination noise, and $r^{(m)}$ is the observed log-difference price. 
+\end{frame}
+
+\begin{frame}
+	\frametitle{RV decomposition in the presence of microstructure noise}
+	\[ 
+		RV^{(m)} = RV^{*(m)} + 2\sum_{i=1}^m r_i^{*(m)}\epsilon_i^{(m)} + \sum_{j=1}^m \epsilon_j^{(m)^2}
+	\]
+	Under the assumptions that $a)$ the noise process is independent and identically distributed with mean zero and finite variance $\omega^2$ and finite fourth moments, and $b)$ the noise is independent of the true price. 
+	\begin{equation}
+		E[ RV^{(m)} ] = IV + 2m\omega^2 
+	\end{equation}
+
+	\pause
+
+	Sampling at lower frequencies reduces bias but leads to an increase in variance (bias-variance trade-off).
+\end{frame}
+
+\begin{frame}
+	\frametitle{Averaging and Subsampling}
+	Average a number of IV estimators for different sampling frequencies over the high-frequency samples:
+	\begin{equation}
+		TTSRV^{(m,m_1, \ldots, m_K, K)} = \frac{1}{K}\sum_{k=1}^K RV^{(k,m_k)} - \frac{\bar{m}}{m}RV^{(all)}
+	\end{equation}
+	Under independent noise assumptions, the estimator is consistent. Under equidistant observations and under regular allocation of the grids, there is an asymptotic distribution result. 
+\end{frame}
+	
+\begin{frame}
+	\frametitle{Kernel-Based Estimation}
+	\begin{equation}
+		KRV^{(m,H)} = RV^{(m)} + 2\sum_{h=1}^H \frac{m}{m-h}\gamma_h,
+	\end{equation}
+	with $\gamma_h = \sum_{i=1}^m r_i^{(m)} r_{i+h}^{(m)}$. 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Stochastic Volatility}
+	We model the log-price $y^{*}(t)$ follows the solution to the stochastic differential equation
+	\begin{equation}
+		dy^{*}(t) = \{ \mu  + \beta\sigma^2(t) \}dt + \sigma(t)dw(t) 
+	\end{equation}
+
+	Here $\mu$ is the familiar drift and $\beta$ is the \textit{risk-premium}. Over an interval $\Delta > 0$ returns are defined as 
+	\begin{eqnarray*}
+		y_n &=& y^{*}(\Delta n) - y^{*}\{ (n-1)\Delta \} \\
+		y_n | \sigma^2_n &\sim& N(\mu\Delta + \beta\sigma_n^2, \sigma^2_n ) \\
+		\sigma_n^2 &=& \sigma^{2*} (n\Delta) - \sigma^{2*} \{ (n-1)\Delta \}
+	\end{eqnarray*}
+
+	\pause
+	
+	Models is subject to microstructure noise. We therefore fit the models to realized volatility over the trading periods $\Delta$. 
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+        \frametitle{References}
+        \bibliographystyle{plain}
+        \bibliography{C:/Advancement/advancement-bibliography}
+\end{frame}
+
+
+\end{document}

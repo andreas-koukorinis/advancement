@@ -1,0 +1,156 @@
+\chapter{Future Work} \label{chapter:4}
+
+\section{Stochastic Volatility Estimation With Microstructure Noise} \label{sec:stoch-vol-microstructure-noise}
+The first part of our proposed future work is to account for microstructure noise in the context of stochastic volatility models for high-frequency data. To our knowledge, currently stochastic volatility models are fit to high-frequency data by matching realized volatility estimates or range-based estimates to state-space representations of volatility derived from the stochastic volatility models; or by matching higher moments of the model to higher-order realized volatility estimates, as described in Section \ref{sec:stoch-vol-models-and-high-freq-data}. Our proposed approach is to simply include observational noise in the discrete-time version of the Orstein-Uhlenbeck process: 
+\begin{eqnarray*}
+%	Y_{t+1} &=& \log(S_{t+1}) + \xi\gamma_{t} \\
+%	\log(S_{t+1}) &=& \log(S_{t}) + \mu(S_t, \sigma_t) + \nu(S_t, \sigma_t)\epsilon_{t+1,1} \\
+%	\log(\sigma_{t+1}) &=& \log(\sigma_{t}) + \alpha(S_t, \sigma_t) + \beta(S_t, \sigma_t)\epsilon_{t+2,2}.
+	Y_{t+1} &=& \log(S_{t+1}) + \xi\gamma_{t} \\
+	\log(S_{t+1}) &=& \log(S_{t}) + \mu + \sigma_{t+1} \epsilon_{t+1,1} \\
+	\log(\sigma_{t+1}) &=& \alpha + \phi[ \log(\sigma_{t}) - \alpha] + \beta\epsilon_{t+2,2}.
+\end{eqnarray*}
+with $\gamma_t \sim N(0, 1)$, and the tuple $(\epsilon_{t+1,1}, \epsilon_{t+1,2})$ following a bivariate normal distribution with $E(\epsilon_{t,1}) = E(\epsilon_{t,2}) = 0$, $\mbox{Var}(\epsilon_{t,1}) = \mbox{Var}(\epsilon_{t,2}) = 1$ and $\mbox{Cor}(\epsilon_{t,1}, \epsilon_{t,2}) = \rho$. By allowing a nonzero correlation between these innovations, the model incorporates possible leverage effects.
+
+We determine the variance of microstructure noise $\xi$ by considering that this effect arises from the discretization of price quotation and the spread between bid and ask prices on the exchanges. Let $D$ be the maximum of the of the discrete price size and the average bid-ask spread of the considered asset price and let $Q$ be the average price level of the asset. We derive an approximation of $\xi$ by considering a first-order Taylor approximation of $\log(S_{t+1} + \xi^* \gamma_{t+1})$ , the log of the true price $S_{t+1}$ plus noise with a standard deviation $\xi = D/2$. In this way most measurement errors are within an interval $D$ of the true price. Approximating $1/S_{t+1}$ with $1/Q$, we have 
+%
+\[ \log(S_{t+1} + \xi^* \gamma_{t+1}) \approx \log(S_{t+1}) + \frac{\xi^*}{Q}\gamma_{t+1}. \] 
+%
+In this way, as a point estimate, $\xi = D/2Q$. In terms of a Bayesian estimation of the model, we propose a strong prior for $\xi$:
+%
+\[ \xi \sim \mbox{Gamma}\left( \frac{D^2}{4 Q^2 \delta }, \frac{D}{2Q \delta} \right), \]
+%
+such that $E(\xi) = D/2Q$ and $\mbox{Var}(\xi) = \delta$, where $\delta$ is small. The standard deviation $\xi$ of the noise process needs a strong specification; otherwise the model is not identifiable since the effects of noise and the latent volatility process $\{ \log(\sigma_t) \}$ cannot be distinguished.   
+
+
+We will fit the above model using an MCMC algorithm. Conditioning on the volatility series and $\xi$, we can sample  $\{ S_t \}$ using forward-filtering backward-sampling. In turn, we can estimate the series $\{ \log( \sigma_t ) \}$ using the algorithm of \cite{omori2007stochastic}. In this manner we are resolving the additional level of latency in our model by using the DLM structure of the log-return series. 
+	
+Once we have estimated the series $\{ \log( \sigma_t ) \}$, we can recover the posterior distribution of the integrated volatility by computing the sums $IV^{(b)} = \sum_{t=1}^T \exp( 2\log(\sigma_t^{(b)}) )$. The thus derived estimates for integrated volatility will be compared to Realized Volatility estimates which also account for microstructure noise to measure the utility of our model. 
+
+\subsection{Using maximum and minimum prices for estimating volatility}
+
+For very liquid markets with multiple transactions every millisecond, the approach in Section \ref{sec:stoch-vol-microstructure-noise} can be computationally intensive. By working with longer intervals (of the order of 1 second, for example) we can reduce this computational cost, but instead of discarding all observations within sampling intervals we can include the intra-period maximum and minimum price to improve inference. However, data at this frequency is bound to be contaminated by microstructure noise, so the model from Chapter \ref{chapter:2} is not directly applicable in this setting. 
+
+Instead, we need the likelihood for the opening, closing, high, and low \textit{observed} returns. The difficulty in deriving this likelihood comes from the fact that microstructure noise does not scale with the observed sampling period length, so there is no immediate stochastic differential form for this type of process, and the Fokker-Planck equation cannot be invoked. One possible starting point in considering this problem is geometric Brownian motion with jumps, where jumps are observed at every sampling point. However, in this setting jumps drive the process, which is equivalent to microstructure noise affecting the evolution of asset prices. 
+
+
+%In our formulation of the univariate model without microstructure noise, as presented in Chapter \ref{chapter:2}, for any observational time interval $[t, t+1]$, data consists of discrete return values $(Y_1, Y_2, \ldots, Y_k, \ldots, Y_K)$ separated by the sampling period $1/(K+1)$.  It is implicitly assumed that the minimum and maximum attained by the process over the interval are the minimum and maximum observed returns, respectively:
+%\[ a_t = \min\{ Y_k \}_{k=1}^K, \]
+%
+%
+%In our formulation we neglect the possibility that the actual maxima and minima obtained by the process could occur between two sample points. Instead we assume that the these extreme values occur during the discrete observation times. We continue with the assumption but now adding the observational microstructure noise to the model. This can be done by writing the discretized version of the geometric Brownian motion as a latent process confounded by observational noise:
+%\begin{eqnarray*}
+%	Y_{k+1} &=& S_{k+1} + \xi\gamma_{k}, \\
+%	S_{k+1} &=& S_k + \Delta t^* \mu + \sigma \Delta t^* \epsilon_k,
+%\end{eqnarray*}
+%where $\gamma$ can take a number of distributional forms. For now, we will use $\gamma_t \sim N(0,1)$, while $\epsilon_t \sim N(0,1)$. Here, $Y_{k+1}$ is the noisy observed return value, while $S_{k+1}$ is the true underlying return value following GBM. This model assumes that the observational noise does not drive the latent process. Further, the the variance $\xi$ does not scale with time, making it significant for small but less so for large $\Delta t^*$ sampling periods. This is the precise behavior of the empirically studied microstructure noise. 
+
+%In Chapter \ref{chapter:2} we derived the likelihood for the closing, maximum, and minimum return of an asset using a model of returns driven by GBM. With the addition of microstructure noise, our goal is to derive a likelihood for the observed data that takes into account the range of the observed returns. This is necessary to find better estimates for the volatility parameter $\sigma$ through a sharper likelihood. The key idea here is that \textit{observed} maximum and minimum $\max\{ Y_k \}_{k=1}^K$, $\min\{ Y_k \}_{k=1}^K$ are not the maximum and minimum taken on by the latent process $S_k$. Therefore, the observed extrema cannot be used to derive the types of likelihoods used in Chapter \ref{chapter:2}, and the variables 
+%\[ m_t = \min\{ S_k \}_{k=1}^K \]
+%\[ M_t = \max\{ S_k \}_{k=1}^{K} \]
+%are random. A simplifying assumption here will be that the opening and closing returns are not subject to microstructure noise:
+%\[ Y_1 = S_1, \]
+%\[ Y_K = S_K .\]
+%Because the extreme values of the latent process are not known, we can only aim to derive the likelihood of the closing price, conditioned on vector of observed values $\mathbf{y} = (y_1, y_2, \ldots, y_K)$. 
+%\begin{eqnarray}
+%	p(S_K = s | \mu, \sigma, \xi, \mathbf{y}, S_1 ) &=&  \int_{b_t = S_1}^{\infty} \int_{a_t = -\infty}^{S_1} p(S_K = s, M_t = %b_t, m_t = a_t | \mu, \sigma, \xi, \mathbf{y}) \\ \nonumber
+%			&& \qquad p( M_t = b_t | m_t = a_t, \mu, \sigma, \xi, \mathbf{y} ) p(m_t = a_t | \mu, \sigma, \xi, \mathbf{y}) da_t db_t \label{eq:probability}
+%\end{eqnarray}
+%The probability $p(S_K = s, M_t = b_t, m_t = a_t | \mu, \sigma, \xi, \mathbf{y})$ is the main result of Chapter \ref{chapter:2} and is available.  The probability $p( M_t = b_t | m_t = a_t, \mu, \sigma, \xi, \mathbf{y} )$ can be computed since we are conditioning on the data $\mathbf{y}$. Under this assertion,
+%\[ y_k = S_k + \xi\gamma_k, \]
+%so that the distribution of the latent variables is known
+%\[ S_k \sim N(y_k, \xi^2). \]
+%Hence, 
+%\begin{eqnarray*}
+%	P( M_t \leq b_t | m_t = a_t, \mu, \sigma, \xi, \mathbf{y} ) &=& P( M_t \leq b_t | \xi, \mathbf{y} ) \\
+%		&=& \prod_{k=1}^K p(S_k \leq b_t | \xi, y_k) \\
+%		&=& \prod_{k=1}^K \int_{S_1}^{b_t} p(S_k = u | \xi, y_k ) du
+%\end{eqnarray*}
+%and the probability density is given by the derivative
+%\begin{equation}
+%	p(M_t = b_t | m_t = a_t, \mu, \sigma, \xi, \mathbf{y} ) = \frac{\partial}{\partial b_t} \prod_{k=1}^K \int_{S_1}^{b_t} p(S_k = u | \xi, y_k ) du = \sum_{k=1}^K p(S_k = b_t | \xi, y_k) \prod_{l \neq k} \int_{S_1}^{b_t} p(S_l = u | \xi, y_k ) dl.
+%\end{equation}
+%We can calculate the probability of the minimum similarly. Equipped with these expressions, we can find the probability in (\ref{eq:probability}), and perform maximum likelihood estimation as in Chapter \ref{chapter:2}. 
+
+\section{Bernstein Polynomials} \label{section:bernstein-polynomials}
+In this part of our work, we aim to improve the computational efficiency of the solution to the two-dimensional problem in Chapter 3. As the simulations in Section 3.5 demonstrated, for moderate to large $\rho$ the trigonometric expansion needs a large number of terms to get a good approximation of the solution. This feature of the Fourier expansion, which is due to the separability of the basis functions, coupled with the fact that the system matrix $\mathbf{A}$ is dense, make accurate numerical solutions very expensive. Hence, we are motivated to seek a better basis representation for our problem.
+
+%The main source of computation inefficiency of our original solution is the fact that the system matrix $\mathbf{A}$ in equation (\ref{eq:ch3-system-matrix}) is dense. This is due to the fact that first-order derivatives of the basis functions have infinite summation representations, ie cosine functions are represented in terms of sine functions as infinite sums. Hence, we are motivated to seek a better basis representation for our problem in which first-order derivatives of the basis elements can be represented as a finite sum. 
+
+In this case, a natural alternative to Fourier bases are the Bernstein polynomials, where the $n+1$ basis polynomials of degree $n$ are defined as
+\begin{equation}
+	B_{\nu,n}(x) = \left( \begin{array}{c} n \\ \nu \end{array} \right) x^\nu (1-x)^{n-\nu}, \quad \nu = 0, \ldots, n,
+\end{equation} 
+and the solution has the form 
+\[ q(y_1, y_2, t) = \sum_{n=1}^N \sum_{m=1}^M C_{m,n}(t) B_{n,N}(y_1) B_{m,M}(y_2). \]
+%
+In addition to having the smoothness properties needed to represent the solution to the diffusion problem, these basis functions are defined on a bounded domain. Further, the derivatives of each basis element can be written as the sum of three other basis functions
+\begin{eqnarray*}
+	B'_{\nu,n}(x) &=& n( B_{\nu-1,n-1}(x) - B_{\nu, n-1}(x)) \\
+				&=& n\left( \frac{n - (\nu-1)}{n} B_{\nu-1,n}(x) + \frac{(\nu-1) + 1}{n} B_{\nu,n}(x) + \frac{n - \nu}{n} B_{\nu,n}(x) + \frac{\nu + 1}{n} B_{\nu+1,n}(x) \right) \\
+				&=& n\left( \frac{n - (\nu-1)}{n} B_{\nu-1,n}(x) + B_{\nu,n}(x) + \frac{\nu + 1}{n} B_{\nu+1,n}(x) \right),
+\end{eqnarray*}
+so that the second-order derivatives can be written as the sum of nine other basis functions. The resultant system matrix would therefore be banded. Even though the system matrix will not be necessarily sparse, it will have a known structure that will allow for more efficient eigenvalue decomposition. Additionally, Bernstein polynomials are the kernels of the Beta distribution and so they are characteristically similar to the solution to the heat equation on a bounded domain (Figure (\ref{fig:g3})). As such, they should be a more efficient method of expansion of the solution of the heat equation.
+
+As described, the solution with Bernstein polynomials should make computing the solution to diffusion problem more efficient, but it still lacks correlation structure. We can potentially introduce correlation structure by writing the expansion as 
+\[ q(y_1, y_2, s) = \sum_{n=1}^N \sum_{m=1}^M C_{m,n}(s) \mathcal{K}\bigg(B_{n,N}(y_1) , B_{m,M}(y_2) \bigg). \]
+A natural starting place where we can look for functions $\mathcal{K}$ are families of copulas, which are functions on marginal CDFs whose effect is introducing correlation between continuous random variables. 
+
+\section{Bivariate Stochastic Volatility Model using Open, High, Low, and Closing Data}
+
+We plan to formulate and estimate a birvariate stochastic volatility model that uses results from Chapter \ref{chapter:3} and Section \ref{section:bernstein-polynomials}. For this, we need to specify a two-dimensional stochastic volatility model. In keeping with previous formulation, we consider the discrete-time setting
+\begin{equation}
+	\left( \begin{array}{c} \log(S_{t+1,1}) \\ \log( S_{t+1,2}) \end{array} \right) = \left( \begin{array}{c} \log(S_{t,1}) \\ \log( S_{t,2}) \end{array} \right) + \left( \begin{array}{c} \mu_1 \\ \mu_2 \end{array} \right) + \mathbf{V_{t+1}} \left( \begin{array}{c} w_{t+1,1} \\ w_{t+1,2} \end{array} \right) \label{eq:multivariate-SV}
+\end{equation}
+%
+so that 
+%
+\begin{equation}
+	\left( \begin{array}{c} r_{t+1,1} \\ r_{t+1,2} \end{array} \right) \sim N\left( \left( \begin{array}{c} \mu_1 \\ \mu_2 \end{array} \right), \boldsymbol{\Sigma}_{t+1 } \right), \qquad \boldsymbol{\Sigma}_{t+1} = \mathbf{V}'_{t+1} \mathbf{V}_{t+1}
+\end{equation}
+where $\mathbf{V}_{t+1}$ is the upper triangular Cholesky component of the covariance matrix.
+%
+The interesting thing here is specifying how the covariance matrix $\boldsymbol{\Sigma}_{t+1}$ evolves over time, with no shortage of suggested methods present in the literature. One method is the Wishart random walk approach first suggested by \cite{quintana1987multivariate}. Starting with the Inverse Wishart prior for the covariance matrix, $\boldsymbol{\Sigma}_{t+1}$ is allowed to slowly change over time through multiplication by a discount factor
+\[ \left( \boldsymbol{\Sigma}_{t} | \mathbf{D}_{t} \right) \sim IW( h_{t} , \mathbf{D}_t) \quad \to \quad \left( \boldsymbol{\Sigma}_{t+1} | \mathbf{D}_{t} \right) \sim IW( 1/\beta h_{t} , 1/\beta \mathbf{D}_t). \]
+A more general version of the above procedure, due to \cite{uhlig1997bayesian}, proposes sampling $\boldsymbol{\Gamma}_{t+1}$ from matrix beta distribution with a discount factor $\beta$
+\[ (\boldsymbol{\Gamma}_{t+1} | \mathcal{D}_{t}) \sim Be(\beta h_{t}/2, (1-\beta)h_{t}/2), \]
+then setting 
+\[ \boldsymbol{\Phi}_{t+1} = \mathbf{U}'_t \boldsymbol{\Gamma}_{t+1} \mathbf{U}_t, \]
+where $\boldsymbol{\Phi}_{t} = \boldsymbol{\Sigma}^{-1}_{t}$ and $\mathbf{U}_t$ is the upper triangular Cholesky component of the precision matrix $\boldsymbol{\Phi}_t$. In both approaches, however, the models do not have much flexibility with respect to correlation structure.
+
+A more intuitive approach in the bivariate case is to consider the evolution of $\boldsymbol{\Sigma}_{t}$ component-wise. Writing down 
+\[ \boldsymbol{\Sigma}_{t} = \left( \begin{array}{cc}
+				\sigma_{t,1}^2 & \rho_t \sigma_{t,1}\sigma_{t,2} \\
+				\rho_t \sigma_{t,1}\sigma_{t,2} & \sigma_{t,2}^2
+					\end{array} \right),
+\]
+we can define the updating process for the covariance matrix through a linear, autoregressive process
+\[
+	\left( \begin{array}{c} \log(\sigma_{t+1,1}) \\ \log(\sigma_{t+1,2}) \\ \mbox{logit}(\rho_{t+1}) \end{array} \right) = \left( \begin{array}{c} \mu_{\sigma_{1}} \\ \mu_{\sigma_{2}} \\ \mu_{\rho} \end{array} \right) + \boldsymbol{\Psi} \left( \left( \begin{array}{c} \log(\sigma_{t,1}) \\ \log(\sigma_{t,2}) \\ \mbox{logit}(\rho_{t}) \end{array} \right) - \left( \begin{array}{c} \mu_{\sigma_{1}} \\ \mu_{\sigma_{2}} \\ \mu_{\rho} \end{array} \right) \right) + \boldsymbol{\nu}, \qquad \boldsymbol{\nu} \sim N_3(\mathbf{0}, \boldsymbol{\Sigma}_\nu)
+\]
+
+Many different models for the evolution and correlation of both returns and volatilities can be proposed by specifying the entries in $\boldsymbol{\Psi}$ and $\boldsymbol{\Sigma}_{\nu}$. For example, similarly to \cite{bollerslev1990modelling}, we can impose independent evolution of $\sigma_{1,t}$ and $\sigma_{2,t}$ with no time-dependence of $\rho_t$ by setting $\boldsymbol{\Psi} = \mbox{diag}(\psi_{11}, \psi_{22}, 1)$ and $\boldsymbol{\Sigma}_{\nu} = \mbox{diag}( \sigma^2_{1\nu}, \sigma^2_{2\nu}, 0 )$. Alternatively, we can introduce correlation in volatility and a constant correlation in price \citep*{yu2006multivariate} by setting 
+	\[ \boldsymbol{\Psi} = \left( \begin{array}{ccc} 
+			\psi_{11} & 0 & 0 \\
+			\psi_{21} & \psi_{22} & 0 \\
+			0 & 0 & 1 
+			\end{array} \right),  \qquad  \boldsymbol{\Sigma}_{\nu} = \mbox{diag}( \sigma^2_{1\nu}, \sigma^2_{2\nu}, 0 ). \]
+
+	In our formulation, we will use a fully specified matrix $\boldsymbol{\Psi}$, with independent innovations driving the latent process so that $\boldsymbol{\Sigma}_{\nu} = \mbox{diag}(\sigma^2_{1\nu}, \sigma^2_{2\nu}, \sigma^2_{\rho\nu})$. We can also implement this specification by imposing the autoregressive process on the three entries in the lower-triangular component of Cholesky factorization of $\boldsymbol{\Sigma}_{t+1}$, 
+\begin{equation}
+	\left( \begin{array}{c} \log(V_{t+1,11}) \\ \log(V_{t+1,22}) \\ V_{t+1, 21} \end{array} \right) = \left( \begin{array}{c} \mu_{V_{11}} \\ \mu_{V_{22}} \\ \mu_{V_{21}} \end{array} \right) + \Psi \left( \left( \begin{array}{c} \log(V_{t,11}) \\ \log(V_{t,22}) \\ V_{t, 21} \end{array} \right) -\left( \begin{array}{c} \mu_{V_{11}} \\ \mu_{V_{22}} \\ \mu_{V_{21}} \end{array} \right) \right) + \boldsymbol{\nu}, \qquad \boldsymbol{\nu} \sim N_3(\mathbf{0}, \boldsymbol{\Sigma}_\nu) \label{eq:V-evolution}
+\end{equation}
+where
+\[
+ 	\mathbf{V}_{t} = \left( \begin{array}{cc} 
+					V_{t,11} & 0 \\
+					V_{t,21} & V_{t,22}
+					\end{array} \right), \qquad \boldsymbol{\Sigma}_t = \mathbf{V}'_{t} \mathbf{V}_t.
+\]
+The model formulated by combining (\ref{eq:multivariate-SV}) and (\ref{eq:V-evolution}) will be fitted using Markov Chain Monte Carlo algorithms, where samples of the volatility and correlation processes will be obtained using a forward-filtering backward-sampling scheme. Our contribution will be the inclusion of results in Chapter \ref{chapter:3} and the future work outlined in Section \ref{section:bernstein-polynomials} to allow us to improve our estimates by including maximum and minimum intraperiod prices within the full likelihood for the model.
+
+\section{Timeline for Future Work}
+
+The timeline for the future projects and writing is included in the table below. 
+
+\placeTimeline{.7cm}{5cm}

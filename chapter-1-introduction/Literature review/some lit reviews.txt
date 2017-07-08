@@ -1,0 +1,103 @@
+Trading Patterns and Prices in the Interbank Foreign Exchange Market (Bollerslev 93) -
+	No relevant information other than using GARCH
+
+A MARKOV MODEL OF SWITCHING-REGIME ARCH - didn't read it; don't care
+
+High-frequency data and volatility in foreign-exchange rates (Zhou 1996)
+	Signal to noise ratio in high-frequency data is high. comes up with a 
+biased estimator for variance where squared daily return are augmented. Uses 
+the expression for the variance of the estimator to find an optimal number
+of samples within a trading period, under his model. 
+
+Heterogeneous information arrivals and return volatility dynamics:
+   Uncovering the long-run in high frequency returns (Andersen and Bollerslev, 97)
+	Using a stochastic volatility model where the 
+	attempts to resolve the seemingly conflicting behavior of return 
+volatility dynamics that exist at the inter- and intradaily frequencies. Still 
+uses AR(2) stochastic volatility model. 
+
+Answering the critics
+	uses garch 1,1 to model interday volatility for high frequency data and 
+shows why using the coefficient of multiple determination does not show 
+contradictory results. Then goes into continuous-time volatility modeling and 
+forecast evaulation. Shows that daily squared returns are an unbiased but 
+highly noisy for continuous-time volatility model. 
+
+
+Towards a unified framework for high and low frequency return volatility
+   modeling
+	weak GARCH
+	Paper attempts to answer why standard models for volatility fail on interday level.
+Sets up difference between highly significant in-sample estimates and poor forecasting
+capability of models. We can do much better forecasting with high-frequency estimation: WHY
+Uses GARCH(1,1), but accounts for interday patterns (which attribute to the lack of 
+consisntency in the models) by
+r = sigma * s(this is the interday pattern compoenent; modelled with flexible fourier
+form, where a lot of the modeling is done) * z
+	Show results that illustrate that poor predictive power with respect to 
+future squared returns is an inherent feature of standard vol. models. Sum of squared
+daily returns is an unbiased estimator but sampling at higher frequencies introduces
+market microstructure noise. 
+	poses the problems very neatly with many references.
+
+The Econometrics of Ultra-High-Frequency Data
+	Same idea as in the irregular arrival times paper
+
+Tracking volatility (Cvitanic, 2000)
+	model volatility as v(theta_t) where v is a known functions and theta_t can
+take on discrete values. Using this, a nonlinear filter is developed for the posterior
+distribtuion of theta_t.
+
+Some reflections on analysis of high-frequency data (Andersen 2000) 
+	Focuses on how high-freq data can help us understand lower frequency volatility 
+better. 
+	Section 2: interdaily periodic volatility fluctuations dwarf interday factor that
+is of interest. Any inference procedure must accomodate both strong daily periodicity and
+longer-run slow decay in the serial dependence
+	Section 3: filter out daily periodic component, and the long-memory volatility 
+process has the correlogram die out hyperbolically with time. 
+	Section 4: spectral analysis of high-freq returns. Estimates for low-freq decay 
+component from high-freq data was stable accross different return horizons. GOOD reference
+for this in here
+	Section 5 and 6: integrated volatility as a superior measure  
+
+A dynamial model describing stock martket price distributions (Masoliver 2000)
+	Models the distributions of stock market prices as the sum of infinite number of
+jumps. It shows better matching to empirical results on the distributions of prices
+
+Semiparametric estimation of long-memory volatility dependencies: The
+   role of high-frequency data (Bollerslev 2000)
+	A semi-parametric model
+	New set of volatility estimators that extract information about longer-run 
+dependencies while relying on higher frequency data to do so. 
+	Focuses on the usefulness of high-freq data for degree of fractional integration
+in volatility. Studies the price changes as a long-memory vol. process.
+	PERIODOGRAMS
+	
+The distribution of realized exchange rate volatility
+	uses sum of squared returns with a higher frequency
+
+The distribution of realized stock return volatility
+	uses sum of squared returns with a higher frequency. Better than the above paper
+in terms of the references and the story told. 
+	They fit an integrated process regression to the volatility
+	They get correlations, too
+	
+On measuring volatility of diffusion processes with high frequency data (barucci 2002)
+	Uses FOURIER seriers to estimate sigma(t). Pretty cool!
+
+Modeling the interdependence of volatility and inter-transaction duration processes
+	contribution of this paper is the fomulation of an interdependent model for 
+volatility and transaction intensity. Seek to extend the power of the recursive Ultra
+High Frequency-GARCH (THIS IS FROM "econometrics of high-freq data")
+ framework, and provide a specification that makes it possible to 
+address empirically the interesting issue of how volatility influences transaction inten-
+sity
+
+Towards the fundamentals of technical analysis: analysing the information content of High,
+Low, and Close prices
+	like return-based GARCH
+models, range-based extreme value estimators seem to have the potential of
+capturing serial dependencies in the conditional volatility of exchange rates. Our
+empirical results suggest that extreme value estimators do an even better job.
+	Compares with quadratic variation, so good
